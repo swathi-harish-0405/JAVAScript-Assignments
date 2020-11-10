@@ -1,0 +1,9 @@
+//Q-3
+
+function half(x){
+    console.log(x/2)
+}
+half(3)
+half(6)
+half(4)
+half(9)

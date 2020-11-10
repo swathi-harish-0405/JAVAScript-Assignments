@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON.parse</title>
+</head>
+<body>
+    <p>Using JSON.parse</p>
+    <script type="text/javascript">
+	
+        var str = {firstName:" ",lastName:" "};
+        var n = JSON.parse('{"firstName":" ","lastName":" "}');
+        console.log(n);
+        console.log("Middle name: " + n.middleName);
+        n.middleName = "midd";
+        console.log("After assigning middle name:");
+        console.log("Middle name: " + n.middleName);
+        console.log(typeof(n));
+    
+    
+    
+    
+    
+    </script>
+</body>
+</html>

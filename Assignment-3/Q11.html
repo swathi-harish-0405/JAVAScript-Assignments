@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Creat JS program to BankAccount</p>
+
+    <script type="text/javascript">
+	
+        var BankAccount = function (accountNumber,accountHolderName,accountBalance){
+            this.accountNumber = accountNumber;
+            this.accountHolderName = accountHolderName;
+            this.accountBalance = accountBalance;
+        }
+    
+        BankAccount.prototype.getCurrentBalance = function (){
+            console.log(this.accountHolderName+" now has " +this.accountBalance);
+        }
+    
+        var Savings = function (accountNumber,accountHolderName,accountBalance,isSalary){
+            BankAccount.apply(this,[accountNumber,accountHolderName,accountBalance]);
+            this.isSalary = isSalary;
+        }
+    
+        var Current = function (accountNumber,accountHolderName,accountBalance,odLimit){
+            BankAccount.apply(this,[accountNumber,accountHolderName,accountBalance]);
+            this.odLimit = odLimit;
+        }
+    
+    
+        Savings.prototype = Object.create(BankAccount.prototype);
+        Current.prototype = Object.create(BankAccount.prototype);
+    
+        Savings.prototype.withdraw = function (withdraw){
+            console.log(this.accountHolderName + " is trying to withdraw amount "+withdraw);
+            if(this.accountBalance-withdraw<0){
+                console.log("Not Enough Balance");
+            }
+            else{
+                this.accountBalance = this.accountBalance - withdraw;
+                console.log(this.accountHolderName+" withdrew: "+withdraw);
+            }
+        }
+    
+        Current.prototype.withdraw = function (withdraw){
+            console.log(this.accountHolderName + " is trying to withdraw amount "+withdraw);
+            if(this.accountBalance-withdraw<this.odLimit){
+                console.log("Cannot withdraw beyond odLimit");
+            }
+            else{
+                this.accountBalance = this.accountBalance - withdraw;
+                console.log(this.accountHolderName+" withdrew: "+withdraw);
+            }
+        }
+    
+    
+        var p1 = new Savings(111,"Sam",10000,true);
+        var p2 = new Current(222,"Rohit",20000,30);
+    
+        console.log(p1);
+        console.log(p2);
+    
+        p1.withdraw(4000);
+        p1.getCurrentBalance();
+    
+        p2.withdraw(8000);
+        p2.getCurrentBalance();
+    
+        p2.withdraw(13000);
+        p2.getCurrentBalance();
+    
+    
+    
+    </script>
+</body>
+</html>
